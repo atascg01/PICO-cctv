@@ -1,0 +1,8 @@
+.cameras-index .card img {
+    height: 250px;
+    object-fit: cover;
+}
+
+.cameras-index .card{
+    height: 100%;
+}
