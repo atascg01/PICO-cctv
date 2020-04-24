@@ -4,6 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -19,6 +20,16 @@ public class Camera {
     private String description;
     private String urlImage;
     private String ip;
+    @OneToOne
+    private Configuration configuration;
+
+    public Configuration getConfiguration() {
+        return configuration;
+    }
+
+    public void setConfiguration(Configuration configuration) {
+        this.configuration = configuration;
+    }
 
     public String getIp() {
         return ip;
