@@ -44,14 +44,12 @@
 
         <div class="container mt-4 cameras-index">
             <div class="row">
-                <div th:each="camera : ${cameras}" class="col-md-3 mb-4">
+                <div th:each="configuration : ${configurations}" class="col-md-3 mb-4">
                     <div class="card">
-                        <img th:src="${camera.urlImage}" class="card-img-top" alt="...">
                         <div class="card-body">
-                            <h5 th:text="${camera.name}" class="card-title"></h5>
-                            <p th:text="${camera.description}" class="card-text"></p>
-                            <p th:text="${camera.ip}" class="card-text"></p>
-                            <a th:href="@{/configurationById(id=${camera.configuration.id})}" class="btn btn-primary">Check configuration</a>
+                            <h5 th:text="${configuration.id}" class="card-title"></h5>
+                            <p th:text="${configuration.resolution}" class="card-text"></p>
+                            <p th:text="${configuration.color}" class="card-text"></p>
                         </div>
                     </div>
                 </div>

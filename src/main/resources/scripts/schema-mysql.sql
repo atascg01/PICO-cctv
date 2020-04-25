@@ -35,7 +35,7 @@ CREATE table configuration (
 INSERT into configuration
 (resolution, color) values
 ("1024x768", "RGB"),
-("1024x768", "RGB"),
+("640×480", "RGB"),
 ("1024x768", "RGB"),
 ("1024x768", "RGB");
 
