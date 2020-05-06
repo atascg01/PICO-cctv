@@ -27,4 +27,5 @@ public class CameraSvc {
     public List<Camera> findByName(String name){
         return cameraRepository.findByName(name);
     }
+
 }

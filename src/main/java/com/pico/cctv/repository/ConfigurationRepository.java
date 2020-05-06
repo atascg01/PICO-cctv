@@ -19,4 +19,5 @@ public interface ConfigurationRepository extends JpaRepository<Configuration, In
     @Query("from Configuration c where c.id =?1")
     List<Configuration> findById(int id);
     
+    
 }

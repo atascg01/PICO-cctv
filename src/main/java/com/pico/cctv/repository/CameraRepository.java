@@ -16,7 +16,7 @@ import org.springframework.data.jpa.repository.Query;
  */
 public interface CameraRepository extends JpaRepository<Camera, Integer>{
     
-    @Query("from Camera c where c.name = ?1 order by c.name")
+    @Query("from Camera c where c.name like %?1%")
     List<Camera> findByName(String name);
-    
+
 }

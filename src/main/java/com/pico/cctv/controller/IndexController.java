@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  *
@@ -50,5 +51,12 @@ public class IndexController {
         List<Configuration> configurations = configurationSvc.findById(id);
         model.addAttribute("configurations", configurations);
         return "configuration";
+    }
+    
+    @RequestMapping("/search")
+    public String search(@RequestParam("q") String query, Model model){
+        List<Camera> cameras = cameraSvc.findByName(query);
+        model.addAttribute("cameras", cameras);
+        return "index";
     }
 }
