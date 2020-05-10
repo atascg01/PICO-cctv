@@ -59,4 +59,9 @@ public class IndexController {
         model.addAttribute("cameras", cameras);
         return "index";
     }
+    
+    @RequestMapping("/addCamera")
+    public String addCamera(){
+        return "addCamera";
+    }
 }
