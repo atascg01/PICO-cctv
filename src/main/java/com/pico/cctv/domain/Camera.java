@@ -14,7 +14,7 @@ import javax.persistence.OneToOne;
 @Entity
 public class Camera {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
     private String description;
@@ -70,5 +70,12 @@ public class Camera {
     public void setUrlImage(String urlImage) {
         this.urlImage = urlImage;
     }
+
+    @Override
+    public String toString() {
+        return "Camera{" + "id=" + id + ", name=" + name + ", description=" + description + ", urlImage=" + urlImage + ", ip=" + ip + ", configuration=" + configuration.getName() + '}';
+    }
+    
+    
     
 }

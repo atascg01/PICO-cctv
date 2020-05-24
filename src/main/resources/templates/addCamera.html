@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-        <link rel="stylesheet" href="css/index.css">
+        <link rel="stylesheet" th:href="@{/css/index.css}">
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
@@ -14,7 +14,7 @@
     <body>
         <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
             <a class="navbar-brand" href="#">
-                <img src="img/logo.png" width="30" height="30" alt="">
+                <img th:src="@{/img/logo.png}" width="40" height="40" alt="">
                 PICO CCTV
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -26,7 +26,7 @@
                         <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/addCamera">Add Camera</a>
+                        <a class="nav-link" href="/camera/new">Add Camera</a>
                     </li>
                 </ul>
             </div>
@@ -36,32 +36,32 @@
             </form>
         </nav>
 
-        <form>
-            <div class="container center_div">
+        <div class="container center_div">
+            <h1 class="mt-4">New Camera</h1>
+            <form method="post" th:action="@{/camera/save}" th:object="${camera}">
                 <div class="form-group mt-4">
-                    <label for="inputName">Camera name</label>
-                    <input required="true" type="text" class="form-control" id="exampleInputName" placeholder="Camera 1">
+                    <label for="name">Camera name</label>
+                    <input required="true" th:field="*{name}" type="text" class="form-control" name="name" id="name" placeholder="Camera 1">
                 </div>
                 <div class="form-group">
-                    <label for="inputIP">Camera IP</label>
-                    <input required="true" type="text" class="form-control" id="exampleInputIp" placeholder="192.168.1.1">
+                    <label for="ip">Camera IP</label>
+                    <input required="true" th:field="*{ip}" type="text" class="form-control" name="ip" id="ip" placeholder="192.168.1.1">
                 </div>
                 <div class="form-group">
-                    <label for="inputDescription">Camera Description</label>
-                    <input type="text" class="form-control" id="exampleInputDescription" placeholder="">
+                    <label for="description">Camera Description</label>
+                    <input type="text" th:field="*{description}" class="form-control" name="description" id="description" placeholder="My camera">
                 </div>
                 <div class="form-group">
-                    <label for="inputUrl">Image URL</label>
-                    <input type="text" class="form-control" id="exampleInputURL" placeholder="">
+                    <label for="urlImage">Image URL</label>
+                    <input type="text" th:field="*{urlImage}" class="form-control" name="urlImage" id="urlImage" placeholder="">
                 </div>
                 <div class="form-group">
-                    <label for="inputResolution">Camera Resolution</label>
-                    <input type="text" class="form-control" id="exampleInputResolution" placeholder="1024x768">
+                    <label for="configuration">Configuration</label>
+                    <select class="form-control" th:field="*{configuration}" id="configuration">
+                        <option th:each="configuration : ${configurations}" th:value="${configuration.id}" th:text="${configuration.name}"></option>
+                    </select>
                 </div>
-                <div class="form-group">
-                    <label for="inputColor">Camera Color</label>
-                    <input type="text" class="form-control" id="exampleInputColor" placeholder="RGB">
-                </div>
+
                 <button type="submit" class="btn btn-primary">Add Camera</button>
-            </div>
-        </form>
+            </form>
+        </div>

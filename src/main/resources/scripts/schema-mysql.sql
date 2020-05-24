@@ -29,15 +29,16 @@ INSERT into camera
 CREATE table configuration (
     id int primary key auto_increment,
     resolution varchar(20),
-    color varchar(50)
+    color varchar(50),
+    name varchar(50)
 );
 
 INSERT into configuration
-(resolution, color) values
-("1024x768", "RGB"),
-("640×480", "RGB"),
-("1024x768", "RGB"),
-("1024x768", "RGB");
+(resolution, color, name) values
+("1024x768", "RGB", "Configuration 1"),
+("640×480", "RGB", "Configuration 2"),
+("1024x768", "RGB", "Configuration 3"),
+("1024x768", "RGB", "Configuration 4");
 
 alter table camera
 add column configuration_id int, 
