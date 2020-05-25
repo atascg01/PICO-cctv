@@ -8,22 +8,22 @@
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-        <title>Hello, world!</title>
+        <title>PICO CCTV</title>
     </head>
     <body>
-        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-            <a class="navbar-brand" href="#">
-                <img th:src="@{/img/logo.png}" width="30" height="30" alt="">
-                PICO CCTV
-            </a>
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #b3cbff;">
+            <img th:src="@{/img/logo.png}" width="40" height="40" alt="">
+            <a class="navbar-brand ml-1" href="/">PICO CCTV</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
+                    <img class="mt-1 ml-2" th:src="@{/img/house.png}" width="30" height="30" alt="">
                     <li class="nav-item active">
                         <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                     </li>
+                    <img class="mt-1 ml-2" th:src="@{/img/add.png}" width="30" height="30" alt="">
                     <li class="nav-item">
                         <a class="nav-link" href="/camera/new">Add Camera</a>
                     </li>
@@ -44,7 +44,9 @@
                             <h5 th:text="${camera.name}" class="card-title"></h5>
                             <p th:text="${camera.description}" class="card-text"></p>
                             <p th:text="${camera.ip}" class="card-text"></p>
-                            <a th:href="@{/configurationById(id=${camera.configuration.id})}" class="btn btn-primary">Check configuration</a>
+                            <a th:href="@{/configurationById(id=${camera.configuration.id})}" class="btn btn-info w-100">Check configuration</a>
+                            <a class="btn btn-primary mt-2 w-100 text-light">Modify</a>
+                            <a class="btn btn-danger mt-2 w-100 text-light">Delete</a>
                         </div>
                     </div>
                 </div>
