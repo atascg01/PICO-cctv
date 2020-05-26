@@ -27,7 +27,7 @@ public class IndexController {
     
     @RequestMapping("/")
     public String renderIndex(Model model){
-        List<Camera> cameras = cameraSvc.findCameras();
+        List<Camera> cameras = cameraSvc.findCamerasSorted();
         model.addAttribute("cameras", cameras);
         return "index";
     }

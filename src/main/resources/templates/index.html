@@ -45,8 +45,8 @@
                             <p th:text="${camera.description}" class="card-text"></p>
                             <p th:text="${camera.ip}" class="card-text"></p>
                             <a th:href="@{/configurationById(id=${camera.configuration.id})}" class="btn btn-info w-100">Check configuration</a>
-                            <a th:href="@{/camera/edit(id=${camera.id})}" class="btn btn-primary mt-2 w-100 text-light">Edit</a>
-                            <a th:href="@{/camera/delete(id=${camera.id})}" class="btn btn-danger mt-2 w-100 text-light">Delete</a>
+                            <a th:href="@{/camera/edit(id=${camera.id})}" style="background-color: #00e6ac;" class="btn mt-2 w-100 text-light">Edit</a>
+                            <a th:href="@{/camera/delete(id=${camera.id})}" style="background-color: #ff4d4d;" class="btn mt-2 w-100 text-light">Delete</a>
                         </div>
                     </div>
                 </div>
