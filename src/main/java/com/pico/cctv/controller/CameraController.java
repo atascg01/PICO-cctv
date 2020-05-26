@@ -49,6 +49,7 @@ public class CameraController {
         Camera camera = cameraSvc.findById(id);
         model.addAttribute("configurations", configurationSvc.findConfigurations());
         model.addAttribute("camera", camera);
+        //sout
         return "editCamera";
     }
     
