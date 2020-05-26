@@ -4,11 +4,12 @@
         <!-- Required meta tags -->
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
         <link rel="stylesheet" th:href="@{/css/index.css}">
         <!-- Bootstrap CSS -->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
-        <title>PICO CCTV</title>
+        <title>Hello, world!</title>
     </head>
     <body>
         <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #b3cbff;">
@@ -35,28 +36,32 @@
             </form>
         </nav>
 
-        <div class="container mt-4 cameras-index">
-            <div class="row">
-                <div th:each="camera : ${cameras}" class="col-md-3 mb-4">
-                    <div class="card">
-                        <img th:src="${camera.urlImage}" class="card-img-top" alt="...">
-                        <div class="card-body">
-                            <h5 th:text="${camera.name}" class="card-title"></h5>
-                            <p th:text="${camera.description}" class="card-text"></p>
-                            <p th:text="${camera.ip}" class="card-text"></p>
-                            <a th:href="@{/configurationById(id=${camera.configuration.id})}" class="btn btn-info w-100">Check configuration</a>
-                            <a th:href="@{/camera/edit(id=${camera.id})}" class="btn btn-primary mt-2 w-100 text-light">Edit</a>
-                            <a th:href="@{/camera/delete(id=${camera.id})}" class="btn btn-danger mt-2 w-100 text-light">Delete</a>
-                        </div>
-                    </div>
+        <div class="container center_div">
+            <h1 class="mt-4">Edit Camera</h1>
+            <form method="post" th:action="@{/camera/save}" th:object="${camera}">
+                <div class="form-group mt-4">
+                    <label for="name">Camera name</label>
+                    <input required="true" th:field="*{name}" type="text" class="form-control" name="name" id="name" placeholder="Camera 1">
                 </div>
-            </div>
-        </div>
+                <div class="form-group">
+                    <label for="ip">Camera IP</label>
+                    <input required="true" th:field="*{ip}" type="text" class="form-control" name="ip" id="ip" placeholder="192.168.1.1">
+                </div>
+                <div class="form-group">
+                    <label for="description">Camera Description</label>
+                    <input type="text" th:field="*{description}" class="form-control" name="description" id="description" placeholder="My camera">
+                </div>
+                <div class="form-group">
+                    <label for="urlImage">Image URL</label>
+                    <input type="text" th:field="*{urlImage}" class="form-control" name="urlImage" id="urlImage" placeholder="">
+                </div>
+                <div class="form-group">
+                    <label for="configuration">Configuration</label>
+                    <select class="form-control" th:field="*{configuration}" id="configuration">
+                        <option th:each="configuration : ${configurations}" th:value="${configuration.id}" th:text="${configuration.name}"></option>
+                    </select>
+                </div>
 
-        <!-- Optional JavaScript -->
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
-    </body>
-</html>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </form>
+        </div>

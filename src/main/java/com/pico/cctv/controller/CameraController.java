@@ -10,6 +10,7 @@ import com.pico.cctv.service.CameraSvc;
 import com.pico.cctv.service.ConfigurationSvc;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -40,6 +41,20 @@ public class CameraController {
     public String renderSaveCamera(Camera camera){
         //System.out.println(camera);
         cameraSvc.save(camera);
+        return "redirect:/";
+    }
+    
+    @RequestMapping("/camera/edit")
+    public String renderEditCamera(Model model, int id){
+        Camera camera = cameraSvc.findById(id);
+        model.addAttribute("configurations", configurationSvc.findConfigurations());
+        model.addAttribute("camera", camera);
+        return "editCamera";
+    }
+    
+    @RequestMapping("/camera/delete")
+    public String renderDeleteCamera(int id){
+        cameraSvc.deleteById(id);
         return "redirect:/";
     }
 }

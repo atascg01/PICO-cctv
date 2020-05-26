@@ -18,5 +18,8 @@ public interface CameraRepository extends JpaRepository<Camera, Integer>{
     
     @Query("from Camera c where c.name like %?1%")
     List<Camera> findByName(String name);
+    
+    @Query("from Camera c where c.id =?1")
+    Camera findById(int id);
 
 }

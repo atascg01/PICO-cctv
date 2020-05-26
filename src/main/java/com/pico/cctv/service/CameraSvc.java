@@ -32,4 +32,11 @@ public class CameraSvc {
         return cameraRepository.save(camera);
     }
 
+    public Camera findById(int id){
+        return cameraRepository.findById(id);
+    }
+    
+    public void deleteById(int id){
+        cameraRepository.deleteById(id);
+    }
 }
