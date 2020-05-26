@@ -38,7 +38,7 @@
 
         <div class="container center_div">
             <h1 class="mt-4">Edit Camera</h1>
-            <form method="post" th:action="@{/camera/save}" th:object="${camera}">
+            <form method="post" th:action="@{/camera/edit/confirm(id=${camera.id})}" th:object="${camera}">
                 <div class="form-group mt-4">
                     <label for="name">Camera name</label>
                     <input required="true" th:field="*{name}" type="text" class="form-control" name="name" id="name" placeholder="Camera 1">
@@ -61,7 +61,7 @@
                         <option th:each="configuration : ${configurations}" th:value="${configuration.id}" th:text="${configuration.name}"></option>
                     </select>
                 </div>
-
-                <button type="submit" class="btn btn-primary">Save</button>
+                <a href="/" class="btn btn-danger">Cancel</a>
+                <button type="submit" class="btn btn-primary">Confirm</button>
             </form>
         </div>

@@ -39,18 +39,29 @@ public class CameraController {
     
     @PostMapping("/camera/save")
     public String renderSaveCamera(Camera camera){
-        //System.out.println(camera);
         cameraSvc.save(camera);
         return "redirect:/";
     }
     
     @RequestMapping("/camera/edit")
-    public String renderEditCamera(Model model, int id){
+    public String renderEditCamera(Model model, Integer id){
+        System.out.println("ID = "+id);
         Camera camera = cameraSvc.findById(id);
         model.addAttribute("configurations", configurationSvc.findConfigurations());
         model.addAttribute("camera", camera);
-        //sout
         return "editCamera";
+    }
+    
+    @RequestMapping("/camera/edit/confirm")
+    public String renderEditConfirmCamera(Camera camera){
+        Camera cameraInDdbb = cameraSvc.findById(camera.getId());
+        cameraInDdbb.setConfiguration(camera.getConfiguration());
+        cameraInDdbb.setDescription(camera.getDescription());
+        cameraInDdbb.setIp(camera.getIp());
+        cameraInDdbb.setName(camera.getName());
+        cameraInDdbb.setUrlImage(camera.getUrlImage());
+        cameraSvc.save(cameraInDdbb);
+        return "redirect:/";
     }
     
     @RequestMapping("/camera/delete")

@@ -47,7 +47,7 @@ public class IndexController {
     }
     
     @RequestMapping("/configurationById")
-    public String renderCameraByConfiguration(Model model, int id){
+    public String renderCameraByConfiguration(Model model, Integer id){
         List<Configuration> configurations = configurationSvc.findById(id);
         model.addAttribute("configurations", configurations);
         return "configuration";
