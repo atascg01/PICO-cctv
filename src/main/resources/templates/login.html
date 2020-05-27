@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div class="container center_div">
+            <h1 class="mt-4">New Camera</h1>
+            <form method="post" th:action="@{/camera/save}" th:object="${camera}">
+                <div class="form-group mt-4">
+                    <label for="name">Camera name</label>
+                    <input required="true" th:field="*{name}" type="text" class="form-control" name="name" id="name" placeholder="Camera 1">
+                </div>
+                <div class="form-group">
+                    <label for="ip">Camera IP</label>
+                    <input required="true" th:field="*{ip}" type="text" class="form-control" name="ip" id="ip" placeholder="192.168.1.1">
+                </div>
+                <div class="form-group">
+                    <label for="description">Camera Description</label>
+                    <input type="text" th:field="*{description}" class="form-control" name="description" id="description" placeholder="My camera">
+                </div>
+                <div class="form-group">
+                    <label for="urlImage">Image URL</label>
+                    <input type="text" th:field="*{urlImage}" class="form-control" name="urlImage" id="urlImage" placeholder="">
+                </div>
+                <div class="form-group">
+                    <label for="configuration">Configuration</label>
+                    <select class="form-control" th:field="*{configuration}" id="configuration">
+                        <option th:each="configuration : ${configurations}" th:value="${configuration.id}" th:text="${configuration.name}"></option>
+                    </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Add Camera</button>
+            </form>
+        </div>
+    </body>
+</html>

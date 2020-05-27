@@ -8,8 +8,18 @@
  * Created: 20 abr. 2020
  */
 
+DROP table if exists user;
 DROP table if exists camera;
 DROP table if exists configuration;
+
+CREATE table user (
+    id int primary key auto_increment,
+    full_name varchar(100) not null,
+    username varchar(20) not null,
+    email varchar(50) not null,
+    password varchar(500) not null,
+    birth_date varchar(50)
+);
 
 CREATE table camera (
     id int primary key auto_increment,
