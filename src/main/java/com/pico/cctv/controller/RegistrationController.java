@@ -5,13 +5,14 @@
  */
 package com.pico.cctv.controller;
 
-import com.pico.cctv.domain.Password;
+import com.pico.cctv.domain.Hash;
 import com.pico.cctv.domain.User;
 import com.pico.cctv.dto.UserDto;
 import com.pico.cctv.service.UserSvc;
-import com.pico.cctv.validator.PasswordValidator;
+import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -32,22 +33,21 @@ public class RegistrationController {
     @RequestMapping("/user/register")
     public String renderRegisterForm(Model model){
         UserDto userDto = new UserDto();
-        model.addAttribute("user", userDto);
+        model.addAttribute("userDto", userDto);
         return "register";
     }
     
     @PostMapping("/user/save")
-    public String saveUser(UserDto userDto){
-        PasswordValidator pswdValidator = new PasswordValidator(userDto.getPassword(), userDto.getConfirmPassword());
-        Password pswd = new Password();
-        String output = pswdValidator.passwordMatch();
-        String hash = pswd.hash(userDto.getPassword());
-        User user = new User(userDto.getFullName(), userDto.getEmail(), userDto.getUsername(), hash);
+    public String saveUser(@Valid UserDto userDto, BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            return "register";
+        }
+        Hash hash = new Hash();
+        User user = new User(userDto.getFullName(), userDto.getEmail(), userDto.getUsername(), hash.hash(userDto.getPassword()));
         if(userDto.getBirthDate() != null){
             user.setBirthDate(userDto.getBirthDate());
         }
         userSvc.save(user);
-        System.out.println(output);
         return "redirect:/";
     }
     

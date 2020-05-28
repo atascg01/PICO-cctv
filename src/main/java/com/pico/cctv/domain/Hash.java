@@ -12,7 +12,7 @@ import java.security.NoSuchAlgorithmException;
  *
  * @author andre
  */
-public class Password {
+public class Hash {
     public String hash(String passwordToHash) 
     {
         String generatedPassword = null;

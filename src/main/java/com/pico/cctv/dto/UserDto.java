@@ -5,7 +5,11 @@
  */
 package com.pico.cctv.dto;
 
+import com.pico.cctv.validator.MinLengthPassword;
+import com.pico.cctv.validator.UniqueEmail;
+import com.pico.cctv.validator.UniqueUsername;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  *
@@ -15,15 +19,19 @@ import javax.validation.constraints.NotNull;
 public class UserDto {
     
     @NotNull
+    @Size(min=2, max=30, message="Please enter a full name between 2 and 30 characters.")
     private String fullName;
     
     @NotNull
+    @UniqueEmail
     private String email;
     
     @NotNull
+    @UniqueUsername
     private String username;
     
     @NotNull
+    @MinLengthPassword
     private String password;
     
     @NotNull 
@@ -77,6 +85,11 @@ public class UserDto {
 
     public void setBirthDate(String birthDate) {
         this.birthDate = birthDate;
+    }
+
+    @Override
+    public String toString() {
+        return "UserDto{" + "fullName=" + fullName + ", email=" + email + ", username=" + username + ", password=" + password + ", confirmPassword=" + confirmPassword + ", birthDate=" + birthDate + '}';
     }
     
 }
