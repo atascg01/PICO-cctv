@@ -38,10 +38,17 @@ public class LoginController {
     }
     
     @PostMapping("/user/login/validate")
-    public String validateLogin(@Valid UserLoginDto userLoginDto, BindingResult bindingResult){
-        if(bindingResult.hasErrors()){
-            return "login";
+    public String validateLogin(UserLoginDto userLoginDto){
+        String username = userLoginDto.getUsername();
+        String password = userLoginDto.getPassword();
+        User user = userSvc.findByUsername(username);
+        if(user != null){
+            Hash hashed = new Hash();
+            String passwordLoginHashed = hashed.hash(password);
+            if(passwordLoginHashed.equals(user.getPassword())){
+                return "redirect:/";
+            }
         }
-        return "redirect:/";
+        return "loginError";
     }
 }

@@ -5,13 +5,11 @@
  */
 package com.pico.cctv.dto;
 
-import com.pico.cctv.validator.UserLogin;
 
 /**
  *
  * @author andre
  */
-@UserLogin(first = "username", second = "password")
 public class UserLoginDto {
     
     private String username;
