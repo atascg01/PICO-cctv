@@ -8,9 +8,12 @@ package com.pico.cctv.controller;
 import com.pico.cctv.domain.Hash;
 import com.pico.cctv.domain.User;
 import com.pico.cctv.dto.UserDto;
+import com.pico.cctv.dto.UserLoginDto;
 import com.pico.cctv.service.UserSvc;
+import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -29,23 +32,16 @@ public class LoginController {
     }
     @RequestMapping("/user/login")
     public String renderLoginUser(Model model){
-        UserDto userDto = new UserDto();
-        model.addAttribute("userDto", userDto);
+        UserLoginDto userLoginDto = new UserLoginDto();
+        model.addAttribute("userLoginDto", userLoginDto);
         return "login";
     }
     
     @PostMapping("/user/login/validate")
-    public String validateLogin(UserDto userDto){
-        String username = userDto.getUsername();
-        String password = userDto.getPassword();
-        User user = userSvc.findByUsername(username);
-        if(user != null){
-            Hash hashed = new Hash();
-            String passwordLoginHashed = hashed.hash(password);
-            if(passwordLoginHashed.equals(user.getPassword())){
-                return "redirect:/";
-            }
+    public String validateLogin(@Valid UserLoginDto userLoginDto, BindingResult bindingResult){
+        if(bindingResult.hasErrors()){
+            return "login";
         }
-        return "login";
+        return "redirect:/";
     }
 }

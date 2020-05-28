@@ -5,6 +5,7 @@
  */
 package com.pico.cctv.dto;
 
+import com.pico.cctv.validator.FieldMatch;
 import com.pico.cctv.validator.MinLengthPassword;
 import com.pico.cctv.validator.UniqueEmail;
 import com.pico.cctv.validator.UniqueUsername;
@@ -16,6 +17,7 @@ import javax.validation.constraints.Size;
  * @author andre
  */
 
+@FieldMatch(first = "password", second = "confirmPassword")
 public class UserDto {
     
     @NotNull
