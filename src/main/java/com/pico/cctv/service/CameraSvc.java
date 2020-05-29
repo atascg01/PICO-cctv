@@ -43,4 +43,8 @@ public class CameraSvc {
     public void deleteById(int id){
         cameraRepository.deleteById(id);
     }
+    
+    public boolean isIpUsed(String ip) {
+        return cameraRepository.findByIp(ip) != null;
+    }
 }

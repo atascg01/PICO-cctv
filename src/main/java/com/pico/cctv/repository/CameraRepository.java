@@ -24,5 +24,8 @@ public interface CameraRepository extends JpaRepository<Camera, Integer>{
     
     @Query("from Camera c order by c.name")
     List<Camera> findAllSorted();
+    
+    @Query("from Camera c where c.ip =?1")
+    Camera findByIp(String ip);
 
 }
