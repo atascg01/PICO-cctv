@@ -13,6 +13,7 @@ DROP table if exists camera;
 DROP table if exists configuration;
 DROP table if exists image;
 DROP table if exists object;
+DROP table if exists role;
 
 CREATE table user (
     id int primary key auto_increment,
@@ -44,6 +45,12 @@ CREATE table object (
     times_recognized int DEFAULT 0
 );
 
+CREATE table role (
+    id int primary key auto_increment,
+    name varchar(100) not null,
+    permissions varchar(2000)
+);
+
 INSERT into camera
 (name, description, url_image, ip) values
 ("Camera 1", "PICO CCTV camera from raspberry 1", "https://www.bhphotovideo.com/images/images1000x1000/canon_eos_r_mirrorless_digital_1433711.jpg", "192.168.1.20"),
@@ -64,6 +71,16 @@ INSERT into configuration
 ("640×480", "RGB", "Configuration 2"),
 ("1024x768", "RGB", "Configuration 3"),
 ("1024x768", "RGB", "Configuration 4");
+
+INSERT into role
+(name, permissions) values
+("USER", "VIEW_CAMERAS"),
+("ADMIN", "VIEW_CAMERAS, ADD_CAMERAS");
+
+INSERT into object
+(name, description) values
+("dog", "Recognizing dogs of all races"),
+("cat", "Recognizing black and white cats");
 
 alter table camera
 add column configuration_id int, 

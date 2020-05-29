@@ -5,10 +5,12 @@
  */
 package com.pico.cctv.domain;
 
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
 /**
@@ -17,15 +19,14 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table(name = "object")
-public class Object {
-    
+@Table(name = "role")
+public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    
     private String name;
-    private String description;
-    private int timesRecognized;
+    private Set permissions;
 
     public Integer getId() {
         return id;
@@ -42,22 +43,8 @@ public class Object {
     public void setName(String name) {
         this.name = name;
     }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public int getTimesRecognized() {
-        return timesRecognized;
-    }
-
-    public void setTimesRecognized(int timesRecognized) {
-        this.timesRecognized = timesRecognized;
-    }
+    
+    
     
     
 }
