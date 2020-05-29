@@ -11,6 +11,8 @@
 DROP table if exists user;
 DROP table if exists camera;
 DROP table if exists configuration;
+DROP table if exists image;
+DROP table if exists object;
 
 CREATE table user (
     id int primary key auto_increment,
@@ -27,6 +29,19 @@ CREATE table camera (
     description varchar(2000),
     url_image varchar(500),
     ip varchar(50)
+);
+
+CREATE table image (
+    id int primary key auto_increment,
+    image_url varchar(100) not null,
+    timestamp varchar(100) not null
+);
+
+CREATE table object (
+    id int primary key auto_increment,
+    name varchar(100) not null,
+    description varchar(2000),
+    times_recognized int DEFAULT 0
 );
 
 INSERT into camera
@@ -52,7 +67,9 @@ INSERT into configuration
 
 alter table camera
 add column configuration_id int, 
-add foreign key (configuration_id) references configuration(id);
+add foreign key (configuration_id) references configuration(id),
+add column user_id int,
+add foreign key (user_id) references user(id);
 
 update camera set configuration_id = 1 where id = 1;
 update camera set configuration_id = 2 where id = 2;

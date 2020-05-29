@@ -22,6 +22,8 @@ public class Camera {
     private String ip;
     @OneToOne
     private Configuration configuration;
+    @OneToOne
+    private User user;
 
     public Configuration getConfiguration() {
         return configuration;
@@ -71,10 +73,20 @@ public class Camera {
         this.urlImage = urlImage;
     }
 
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
     @Override
     public String toString() {
-        return "Camera{" + "id=" + id + ", name=" + name + ", description=" + description + ", urlImage=" + urlImage + ", ip=" + ip + ", configuration=" + configuration.getName() + '}';
+        return "Camera{" + "id=" + id + ", name=" + name + ", description=" + description + ", urlImage=" + urlImage + ", ip=" + ip + ", configuration=" + configuration + ", user=" + user + '}';
     }
+
+    
     
     
     
