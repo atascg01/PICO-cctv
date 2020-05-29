@@ -31,4 +31,8 @@ public class ConfigurationSvc {
         return configurationRepository.findById(id);
     }
     
+    public Configuration save(Configuration configuration){
+        return configurationRepository.save(configuration);
+    }
+    
 }
