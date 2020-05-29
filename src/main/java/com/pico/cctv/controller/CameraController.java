@@ -40,7 +40,7 @@ public class CameraController {
     @PostMapping("/camera/save")
     public String renderSaveCamera(Camera camera){
         cameraSvc.save(camera);
-        return "redirect:/";
+        return "redirect:/home";
     }
     
     @RequestMapping("/camera/edit")
@@ -61,12 +61,12 @@ public class CameraController {
         cameraInDdbb.setName(camera.getName());
         cameraInDdbb.setUrlImage(camera.getUrlImage());
         cameraSvc.save(cameraInDdbb);
-        return "redirect:/";
+        return "redirect:/home";
     }
     
     @RequestMapping("/camera/delete")
     public String renderDeleteCamera(int id){
         cameraSvc.deleteById(id);
-        return "redirect:/";
+        return "redirect:/home";
     }
 }

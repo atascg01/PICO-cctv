@@ -30,6 +30,12 @@ public class LoginController {
     public LoginController(UserSvc userSvc) {
         this.userSvc = userSvc;
     }
+    
+    @RequestMapping("/")
+    public String renderHomeLogin(){
+        //Check user logged
+        return "redirect:/user/login";
+    }
     @RequestMapping("/user/login")
     public String renderLoginUser(Model model){
         UserLoginDto userLoginDto = new UserLoginDto();
@@ -46,7 +52,7 @@ public class LoginController {
             Hash hashed = new Hash();
             String passwordLoginHashed = hashed.hash(password);
             if(passwordLoginHashed.equals(user.getPassword())){
-                return "redirect:/";
+                return "redirect:/home";
             }
         }
         return "loginError";

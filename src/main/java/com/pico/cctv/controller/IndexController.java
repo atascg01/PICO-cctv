@@ -25,7 +25,7 @@ public class IndexController {
         this.configurationSvc = configurationSvc;
     }
     
-    @RequestMapping("/")
+    @RequestMapping("/home")
     public String renderIndex(Model model){
         List<Camera> cameras = cameraSvc.findCamerasSorted();
         model.addAttribute("cameras", cameras);
