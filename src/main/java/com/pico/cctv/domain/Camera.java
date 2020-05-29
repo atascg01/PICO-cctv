@@ -13,7 +13,6 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table(name = "camera")
 public class Camera {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

@@ -9,14 +9,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 /**
  *
  * @author atascg01
  */
 @Entity
-@Table(name = "configuration")
 public class Configuration {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)

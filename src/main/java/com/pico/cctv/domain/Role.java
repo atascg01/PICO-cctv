@@ -10,8 +10,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
-import javax.persistence.Table;
+
 
 /**
  *
@@ -19,14 +18,13 @@ import javax.persistence.Table;
  */
 
 @Entity
-@Table(name = "role")
 public class Role {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     
     private String name;
-    private Set permissions;
+    private String permissions;
 
     public Integer getId() {
         return id;
@@ -43,6 +41,16 @@ public class Role {
     public void setName(String name) {
         this.name = name;
     }
+
+    public String getPermissions() {
+        return permissions;
+    }
+
+    public void setPermissions(String permissions) {
+        this.permissions = permissions;
+    }
+    
+    
     
     
     

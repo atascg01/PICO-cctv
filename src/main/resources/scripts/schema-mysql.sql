@@ -72,6 +72,7 @@ INSERT into configuration
 ("1024x768", "RGB", "Configuration 3"),
 ("1024x768", "RGB", "Configuration 4");
 
+
 INSERT into role
 (name, permissions) values
 ("USER", "VIEW_CAMERAS"),
