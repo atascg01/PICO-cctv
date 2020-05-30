@@ -42,16 +42,18 @@
             <a class="navbar-brand ml-1 mr-2" href="/user/login">Sign out</a>
         </nav>
 
-        <div class="container mt-4 cameras-index">
-            <div class="row">
-                <div th:each="configuration : ${configurations}" class="col-md-3 mb-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 th:text="${configuration.id}" class="card-title"></h5>
-                            <p th:text="${configuration.resolution}" class="card-text"></p>
-                            <p th:text="${configuration.color}" class="card-text"></p>
-                        </div>
-                    </div>
+        <div class="mt-5 mx-auto" style="width: 218px;">
+            <div class="card" style="width: 18rem;" th:each="configuration : ${configurations}">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${configuration.name}"></h5>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item" th:text="${configuration.id}"></li>
+                    <li class="list-group-item" th:text="${configuration.resolution}"></li>
+                    <li class="list-group-item" th:text="${configuration.color}"></li>
+                </ul>
+                <div class="card-body">
+                    <a th:href="@{/configuration/edit(id=${configuration.id})}" style="background-color: #00e6ac;" class="btn mt-2 w-100 text-light">Edit</a>
                 </div>
             </div>
         </div>

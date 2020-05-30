@@ -39,4 +39,21 @@ public class ConfigurationController {
         return "redirect:/home";
     }
     
+    @RequestMapping("/configuration/edit")
+    public String renderEditConfiguration(Model model, Integer id){
+        Configuration configuration = configurationSvc.findById(id);
+        model.addAttribute("configuration", configuration);
+        return "editConfiguration";
+    }
+    
+    @RequestMapping("/configuration/edit/confirm")
+    public String renderEditConfirmConfiguration(Configuration configuration){
+        Configuration confInDdbb = configurationSvc.findById(configuration.getId());
+        confInDdbb.setName(configuration.getName());
+        confInDdbb.setResolution(configuration.getResolution());
+        confInDdbb.setColor(configuration.getColor());
+        configurationSvc.save(confInDdbb);
+        return "redirect:/home";
+    }
+    
 }

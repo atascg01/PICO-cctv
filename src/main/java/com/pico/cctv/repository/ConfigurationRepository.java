@@ -17,6 +17,6 @@ import org.springframework.data.jpa.repository.Query;
 public interface ConfigurationRepository extends JpaRepository<Configuration, Integer> {
     
     @Query("from Configuration c where c.id =?1")
-    List<Configuration> findById(int id);
+    Configuration findById(int id);
     
 }

@@ -43,31 +43,31 @@
         </nav>
 
         <div class="container center_div">
-            <h1 class="mt-4">New Camera</h1>
-            <form method="post" th:action="@{/camera/save}" th:object="${camera}">
+            <h1 class="mt-4">New Configuration</h1>
+            <form method="post" th:action="@{/configuration/edit/confirm(id=${configuration.id})}" th:object="${configuration}">
                 <div class="form-group mt-4">
                     <label for="name">Camera name</label>
-                    <input required="true" th:field="*{name}" type="text" class="form-control" name="name" id="name" placeholder="Camera 1">
+                    <input required="true" th:field="*{name}" type="text" class="form-control" name="name" id="name" placeholder="Configuration 1">
                 </div>
                 <div class="form-group">
-                    <label for="ip">Camera IP</label>
-                    <input required="true" th:field="*{ip}" type="text" class="form-control" name="ip" id="ip" placeholder="192.168.1.1">
+                    <label for="color">Configuration Color</label>
+                    <select class="form-control" th:field="*{color}" id="color">
+                        <option th:value="RGB" th:text="RGB"></option>
+                        <option th:value="CMYK" th:text="CMYK"></option>
+                        <option th:value="Grayscale" th:text="Grayscale"></option>
+                    </select>
                 </div>
                 <div class="form-group">
-                    <label for="description">Camera Description</label>
-                    <input type="text" th:field="*{description}" class="form-control" name="description" id="description" placeholder="My camera">
-                </div>
-                <div class="form-group">
-                    <label for="urlImage">Image URL</label>
-                    <input type="text" th:field="*{urlImage}" class="form-control" name="urlImage" id="urlImage" placeholder="">
-                </div>
-                <div class="form-group">
-                    <label for="configuration">Configuration</label>
-                    <select class="form-control" th:field="*{configuration}" id="configuration">
-                        <option th:each="configuration : ${configurations}" th:value="${configuration.id}" th:text="${configuration.name}"></option>
+                    <label for="resolution">Camera Resolution</label>
+                    <select class="form-control" th:field="*{resolution}" id="resolution">
+                        <option th:value="640x360" th:text="640x360"></option>
+                        <option th:value="800x600" th:text="800x600"></option>
+                        <option th:value="1024x768" th:text="1024x768"></option>
+                        <option th:value="1440x900" th:text="1440x900"></option>
+                        <option th:value="1920x1080" th:text="1920x1080"></option>
                     </select>
                 </div>
                 <a href="/home" class="btn btn-danger">Cancel</a>
-                <button type="submit" class="btn btn-primary">Add Camera</button>
+                <button type="submit" class="btn btn-primary">Edit Configuration</button>
             </form>
         </div>

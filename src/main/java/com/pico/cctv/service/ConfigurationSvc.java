@@ -27,12 +27,16 @@ public class ConfigurationSvc {
         return configurationRepository.findAll();
     }
     
-    public List<Configuration> findById(int id){
+    public Configuration findById(int id){
         return configurationRepository.findById(id);
     }
     
     public Configuration save(Configuration configuration){
         return configurationRepository.save(configuration);
+    }
+    
+    public void deleteById(int id){
+        configurationRepository.deleteById(id);
     }
     
 }
