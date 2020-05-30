@@ -6,6 +6,7 @@
 package com.pico.cctv.repository;
 
 import com.pico.cctv.domain.Configuration;
+import com.pico.cctv.domain.User;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -18,5 +19,8 @@ public interface ConfigurationRepository extends JpaRepository<Configuration, In
     
     @Query("from Configuration c where c.id =?1")
     Configuration findById(int id);
+    
+    @Query("from Configuration c where c.user =?1")
+    List<Configuration> findAllByUser(User user);
     
 }

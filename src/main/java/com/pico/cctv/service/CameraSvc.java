@@ -1,8 +1,8 @@
 package com.pico.cctv.service;
 
 import com.pico.cctv.domain.Camera;
+import com.pico.cctv.domain.User;
 import com.pico.cctv.repository.CameraRepository;
-import java.util.ArrayList;
 import java.util.List;
 import org.springframework.stereotype.Service;
 
@@ -24,8 +24,8 @@ public class CameraSvc {
         return cameraRepository.findAll();
     }
     
-    public List<Camera> findCamerasSorted(){
-        return cameraRepository.findAllSorted();
+    public List<Camera> findCamerasSorted(User user){
+        return cameraRepository.findAllSorted(user);
     }
     
     public List<Camera> findByName(String name){

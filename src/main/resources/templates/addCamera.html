@@ -14,23 +14,23 @@
     <body>
         <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #b3cbff;">
             <img th:src="@{/img/logo.png}" width="40" height="40" alt="">
-            <a class="navbar-brand ml-1" href="/home">PICO CCTV</a>
+            <a class="navbar-brand ml-1" th:href="@{/home(sid=${user.token})}">PICO CCTV</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="collapse navbar-collapse" id="navbarNav" th:object="${user}">
                 <ul class="navbar-nav">
                     <img class="mt-1 ml-2" th:src="@{/img/house.png}" width="30" height="30" alt="">
                     <li class="nav-item active">
-                        <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a>
+                        <a class="nav-link" th:href="@{/home(sid=${user.token})}">Home <span class="sr-only">(current)</span></a>
                     </li>
                     <img class="mt-1 ml-2" th:src="@{/img/add.png}" width="30" height="30" alt="">
                     <li class="nav-item">
-                        <a class="nav-link" href="/camera/new">Add Camera</a>
+                        <a class="nav-link" th:href="@{/camera/new(sid=${user.token})}">Add Camera</a>
                     </li>
                     <img class="mt-1 ml-2" th:src="@{/img/settings.png}" width="30" height="30" alt="">
                     <li class="nav-item">
-                        <a class="nav-link" href="/configuration/new">Add Configuration</a>
+                        <a class="nav-link" th:href="@{/configuration/new(sid=${user.token})}">Add Configuration</a>
                     </li>
                 </ul>
             </div>
@@ -44,30 +44,32 @@
 
         <div class="container center_div">
             <h1 class="mt-4">New Camera</h1>
-            <form method="post" th:action="@{/camera/save}" th:object="${camera}">
-                <div class="form-group mt-4">
-                    <label for="name">Camera name</label>
-                    <input required="true" th:field="*{name}" type="text" class="form-control" name="name" id="name" placeholder="Camera 1">
-                </div>
-                <div class="form-group">
-                    <label for="ip">Camera IP</label>
-                    <input required="true" th:field="*{ip}" type="text" class="form-control" name="ip" id="ip" placeholder="192.168.1.1">
-                </div>
-                <div class="form-group">
-                    <label for="description">Camera Description</label>
-                    <input type="text" th:field="*{description}" class="form-control" name="description" id="description" placeholder="My camera">
-                </div>
-                <div class="form-group">
-                    <label for="urlImage">Image URL</label>
-                    <input type="text" th:field="*{urlImage}" class="form-control" name="urlImage" id="urlImage" placeholder="">
-                </div>
-                <div class="form-group">
-                    <label for="configuration">Configuration</label>
-                    <select class="form-control" th:field="*{configuration}" id="configuration">
-                        <option th:each="configuration : ${configurations}" th:value="${configuration.id}" th:text="${configuration.name}"></option>
-                    </select>
-                </div>
-                <a href="/home" class="btn btn-danger">Cancel</a>
-                <button type="submit" class="btn btn-primary">Add Camera</button>
-            </form>
+            <div th:object="${user}">
+                <form method="post" th:action="@{/camera/save(sid=${user.token})}" th:object="${camera}">
+                    <div class="form-group mt-4">
+                        <label for="name">Camera name</label>
+                        <input required="true" th:field="*{name}" type="text" class="form-control" name="name" id="name" placeholder="Camera 1">
+                    </div>
+                    <div class="form-group">
+                        <label for="ip">Camera IP</label>
+                        <input required="true" th:field="*{ip}" type="text" class="form-control" name="ip" id="ip" placeholder="192.168.1.1">
+                    </div>
+                    <div class="form-group">
+                        <label for="description">Camera Description</label>
+                        <input type="text" th:field="*{description}" class="form-control" name="description" id="description" placeholder="My camera">
+                    </div>
+                    <div class="form-group">
+                        <label for="urlImage">Image URL</label>
+                        <input type="text" th:field="*{urlImage}" class="form-control" name="urlImage" id="urlImage" placeholder="">
+                    </div>
+                    <div class="form-group">
+                        <label for="configuration">Configuration</label>
+                        <select class="form-control" th:field="*{configuration}" id="configuration">
+                            <option th:each="configuration : ${configurations}" th:value="${configuration.id}" th:text="${configuration.name}"></option>
+                        </select>
+                    </div>
+                    <a th:href="@{/home(sid=${user.token})}" class="btn btn-danger">Cancel</a>
+                    <button type="submit" class="btn btn-primary">Add Camera</button>
+                </form>
+            </div>
         </div>

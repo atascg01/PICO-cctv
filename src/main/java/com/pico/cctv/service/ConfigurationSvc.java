@@ -6,6 +6,7 @@
 package com.pico.cctv.service;
 
 import com.pico.cctv.domain.Configuration;
+import com.pico.cctv.domain.User;
 import com.pico.cctv.repository.ConfigurationRepository;
 import java.util.List;
 import org.springframework.stereotype.Service;
@@ -23,8 +24,8 @@ public class ConfigurationSvc {
         this.configurationRepository = configurationRepository;
     }
     
-    public List<Configuration> findConfigurations(){
-        return configurationRepository.findAll();
+    public List<Configuration> findConfigurations(User user){
+        return configurationRepository.findAllByUser(user);
     }
     
     public Configuration findById(int id){

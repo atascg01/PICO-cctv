@@ -6,6 +6,7 @@
 package com.pico.cctv.repository;
 
 import com.pico.cctv.domain.Camera;
+import com.pico.cctv.domain.User;
 import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -22,8 +23,8 @@ public interface CameraRepository extends JpaRepository<Camera, Integer>{
     @Query("from Camera c where c.id =?1")
     Camera findById(int id);
     
-    @Query("from Camera c order by c.name")
-    List<Camera> findAllSorted();
+    @Query("from Camera c where c.user =?1 order by c.name")
+    List<Camera> findAllSorted(User user);
     
     @Query("from Camera c where c.ip =?1")
     Camera findByIp(String ip);

@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -22,6 +23,8 @@ public class Configuration {
     private String resolution;
     private String color;
     private String name;
+    @OneToOne
+    private User user;
 
     public String getName() {
         return name;
@@ -54,4 +57,14 @@ public class Configuration {
     public void setColor(String color) {
         this.color = color;
     }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+    
+    
 }

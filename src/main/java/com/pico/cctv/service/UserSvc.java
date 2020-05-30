@@ -41,4 +41,8 @@ public class UserSvc {
     private Object findByEmail(String email) {
         return this.userRepository.findByEmail(email);
     }
+    
+    public User findByToken(String token){
+        return this.userRepository.findByToken(token);
+    }
 }
