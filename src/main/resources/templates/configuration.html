@@ -36,6 +36,7 @@
             </div>
             <form th:action="@{/search}" class="form-inline my-2 my-lg-0 mr-4">
                 <input autofocus="autofocus" name="q" class="form-control mr-sm-2" type="search" placeholder="Search by name" aria-label="Search">
+                <input style="display:none" name="sid" th:value="${user.token}"></input>
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
             <img class="ml-5" th:src="@{/img/sign.png}" width="30" height="30" alt="">

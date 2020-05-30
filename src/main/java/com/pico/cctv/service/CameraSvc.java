@@ -28,8 +28,8 @@ public class CameraSvc {
         return cameraRepository.findAllSorted(user);
     }
     
-    public List<Camera> findByName(String name){
-        return cameraRepository.findByName(name);
+    public List<Camera> findByName(String name, User user){
+        return cameraRepository.findByName(name, user);
     }
     
     public Camera save(Camera camera){

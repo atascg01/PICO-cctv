@@ -43,8 +43,10 @@ public class IndexController {
     }
     
     @RequestMapping("/cameraByName")
-    public String renderCameraByName(Model model, String name){
-        List<Camera> cameras = cameraSvc.findByName(name);
+    public String renderCameraByName(Model model, String name, HttpServletRequest request, HttpServletResponse response){
+        String token = request.getParameter("sid");
+        User user = userSvc.findByToken(token);
+        List<Camera> cameras = cameraSvc.findByName(name, user);
         model.addAttribute("cameras", cameras);
         return "index";
     }
@@ -60,7 +62,6 @@ public class IndexController {
     
     @RequestMapping("/configurationById")
     public String renderCameraByConfiguration(Model model, Integer id, HttpServletRequest request, HttpServletResponse response){
-        StringBuffer url = request.getRequestURL();
         String token = request.getParameter("sid");
         User user = userSvc.findByToken(token);
         Configuration configuration = configurationSvc.findById(id);
@@ -70,8 +71,10 @@ public class IndexController {
     }
     
     @RequestMapping("/search")
-    public String search(@RequestParam("q") String query, Model model){
-        List<Camera> cameras = cameraSvc.findByName(query);
+    public String search(@RequestParam("q") String query, @RequestParam("sid") String sid, Model model, HttpServletRequest request, HttpServletResponse response){
+        User user = userSvc.findByToken(sid);
+        List<Camera> cameras = cameraSvc.findByName(query, user);
+        model.addAttribute("user", user);
         model.addAttribute("cameras", cameras);
         return "index";
     }
