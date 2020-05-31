@@ -2,6 +2,7 @@ package com.pico.cctv.service;
 
 import com.pico.cctv.repository.ObjectRepository;
 import org.springframework.stereotype.Service;
+import com.pico.cctv.domain.Object;
 
 /**
  *
@@ -18,6 +19,7 @@ public class ObjectSvc {
     }
     
     public Object save(Object object){
-        return this.objectRepository.save(object);
+        return objectRepository.save(object);
     }
+    
 }

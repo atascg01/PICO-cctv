@@ -7,6 +7,7 @@ package com.pico.cctv.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import com.pico.cctv.domain.Object;
+import org.springframework.data.jpa.repository.Query;
 
 /**
  *
@@ -14,5 +15,7 @@ import com.pico.cctv.domain.Object;
  */
 public interface ObjectRepository extends JpaRepository<Object, Integer>{
     
+    @Query("from Object o where o.name =?1")
+    public Object findByName(String name);
     
 }
