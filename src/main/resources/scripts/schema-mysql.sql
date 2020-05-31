@@ -13,8 +13,8 @@ DROP table if exists camera;
 DROP table if exists configuration;
 DROP table if exists image;
 DROP table if exists object;
-DROP table if exists role;
 DROP table if exists user;
+DROP table if exists role;
 
 CREATE table user (
     id int primary key auto_increment,
@@ -77,8 +77,8 @@ INSERT into configuration
 
 INSERT into role
 (name, permissions) values
-("USER", "VIEW_CAMERAS"),
-("ADMIN", "VIEW_CAMERAS, ADD_CAMERAS");
+("USER", "VIEW_CAMERAS, ADD_CAMERAS"),
+("ADMIN", "VIEW_CAMERAS, ADD_CAMERAS, ADD_OBJECTS");
 
 INSERT into object
 (name, description) values
@@ -90,6 +90,10 @@ add column configuration_id int,
 add foreign key (configuration_id) references configuration(id),
 add column user_id int,
 add foreign key (user_id) references user(id);
+
+alter table user
+add column role_id int default 1,
+add foreign key (role_id) references role(id);
 
 alter table configuration
 add column user_id int,

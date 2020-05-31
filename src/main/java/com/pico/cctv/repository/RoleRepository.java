@@ -7,6 +7,7 @@ package com.pico.cctv.repository;
 
 import com.pico.cctv.domain.Role;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 /**
  *
@@ -14,4 +15,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface RoleRepository extends JpaRepository<Role, Integer>{
     
+    @Query("from Role r where r.name =?1")
+    public Role findByName(String name);
 }

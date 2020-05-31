@@ -6,8 +6,10 @@
 package com.pico.cctv.controller;
 
 import com.pico.cctv.domain.Hash;
+import com.pico.cctv.domain.Role;
 import com.pico.cctv.domain.User;
 import com.pico.cctv.dto.UserDto;
+import com.pico.cctv.service.RoleSvc;
 import com.pico.cctv.service.UserSvc;
 import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
@@ -25,9 +27,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class RegistrationController {
     
     private final UserSvc userSvc;
+    private final RoleSvc roleSvc;
 
-    public RegistrationController(UserSvc userSvc) {
+    public RegistrationController(UserSvc userSvc, RoleSvc roleSvc) {
         this.userSvc = userSvc;
+        this.roleSvc = roleSvc;
     }
     
     @RequestMapping("/user/register")
@@ -45,6 +49,8 @@ public class RegistrationController {
         Hash hash = new Hash();
         User user = new User(userDto.getFullName(), userDto.getEmail(), userDto.getUsername(), hash.hash(userDto.getPassword()));
         if(userDto.getBirthDate() != null){
+            Role role = roleSvc.findByName("USER");
+            user.setRole(role);
             user.setBirthDate(userDto.getBirthDate());
         }
         userSvc.save(user);

@@ -9,6 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Transient;
 
 /**
@@ -27,6 +28,8 @@ public class User {
     private String password;
     private String birthDate;
     private String token;
+    @OneToOne
+    private Role role;
 
     public User() {
     }
@@ -94,6 +97,16 @@ public class User {
     public void setToken(String token) {
         this.token = token;
     }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
+    
+    
     
     
 }
