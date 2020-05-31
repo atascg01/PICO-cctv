@@ -2,6 +2,7 @@ package com.pico.cctv.service;
 
 import com.pico.cctv.domain.User;
 import com.pico.cctv.repository.UserRepository;
+import java.util.List;
 import org.springframework.stereotype.Service;
 
 /**
@@ -44,5 +45,9 @@ public class UserSvc {
     
     public User findByToken(String token){
         return this.userRepository.findByToken(token);
+    }
+    
+    public List<User> findAll(){
+        return this.userRepository.findAll();
     }
 }

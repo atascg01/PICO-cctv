@@ -74,7 +74,6 @@ INSERT into configuration
 ("1024x768", "RGB", "Configuration 3"),
 ("1024x768", "RGB", "Configuration 4");
 
-
 INSERT into role
 (name, permissions) values
 ("USER", "VIEW_CAMERAS, ADD_CAMERAS"),
@@ -84,6 +83,10 @@ INSERT into object
 (name, description) values
 ("dog", "Recognizing dogs of all races"),
 ("cat", "Recognizing black and white cats");
+
+alter table object
+add column user_id int,
+add foreign key (user_id) references user(id);
 
 alter table camera
 add column configuration_id int, 
@@ -98,6 +101,10 @@ add foreign key (role_id) references role(id);
 alter table configuration
 add column user_id int,
 add foreign key (user_id) references user(id);
+
+INSERT into user
+(full_name, username, email, password, role_id) values
+("Admin", "admin", "pico.cctv@gmail.com", "81dc9bdb52d04dc20036dbd8313ed055", "2");
 
 update camera set configuration_id = 1 where id = 1;
 update camera set configuration_id = 2 where id = 2;

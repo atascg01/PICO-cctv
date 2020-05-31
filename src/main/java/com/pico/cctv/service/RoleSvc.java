@@ -22,9 +22,11 @@ public class RoleSvc {
         this.roleRepository = roleRepository;
     }
 
-    public Role findByName(String name){
-        return this.roleRepository.findByName(name);
+    public Role findByName(String user) {
+        return this.roleRepository.findByName(user);
     }
     
+    
+
     
 }

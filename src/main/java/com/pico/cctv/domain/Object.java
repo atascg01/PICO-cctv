@@ -9,7 +9,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -25,6 +25,8 @@ public class Object {
     private String name;
     private String description;
     private int timesRecognized;
+    @OneToOne
+    private User user;
 
     public Integer getId() {
         return id;
@@ -57,6 +59,13 @@ public class Object {
     public void setTimesRecognized(int timesRecognized) {
         this.timesRecognized = timesRecognized;
     }
-    
-    
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
 }

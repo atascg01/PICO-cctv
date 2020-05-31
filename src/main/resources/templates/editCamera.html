@@ -18,7 +18,7 @@
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav" th:object="${user}">
+            <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <img class="mt-1 ml-2" th:src="@{/img/house.png}" width="30" height="30" alt="">
                     <li class="nav-item active">
@@ -31,6 +31,14 @@
                     <img class="mt-1 ml-2" th:src="@{/img/settings.png}" width="30" height="30" alt="">
                     <li class="nav-item">
                         <a class="nav-link" th:href="@{/configuration/new(sid=${user.token})}">Add Configuration</a>
+                    </li>
+                    <img th:if="${user.role.name == 'ADMIN'}" class="mt-1 ml-2" th:src="@{/img/recognize.png}" width="30" height="30" alt="">
+                    <li th:if="${user.role.name == 'ADMIN'}" class="nav-item">
+                        <a class="nav-link" th:href="@{/object/new(sid=${user.token})}">Add Recognized Objects</a>
+                    </li>
+                    <img th:if="${user.role.name == 'ADMIN'}" class="mt-1 ml-2" th:src="@{/img/users.png}" width="30" height="30" alt="">
+                    <li th:if="${user.role.name == 'ADMIN'}" class="nav-item">
+                        <a class="nav-link" th:href="@{/users(sid=${user.token})}">Users</a>
                     </li>
                 </ul>
             </div>
